@@ -1,6 +1,5 @@
-# My first Vue-Electron project
-
-Todo List
+# Todo List
+My first Vue-Electron project
 
 
 ### Project setup
