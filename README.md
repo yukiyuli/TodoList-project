@@ -2,14 +2,15 @@
 
 Todo List
 
-## Project setup
+
+### Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Open project
 ```
-npm run serve
+npm run electron:serve
 ```
 
 ### Compiles and minifies for production
@@ -20,6 +21,11 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### 'Error' message: 'Expected indentation of 1 tab but found 4 spaces
+```
+npm run lint -- --fix
 ```
 
 ### Customize configuration
