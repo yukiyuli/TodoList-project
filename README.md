@@ -1,1 +1,3 @@
-# TodoList-project
+My first Vue-Electron project
+
+TodoList
