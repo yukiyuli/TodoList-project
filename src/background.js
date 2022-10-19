@@ -15,10 +15,11 @@ app.on('ready', async () => {
     width: 800,
     height: 600,
     icon: iconPath,
-    webPreferences:{
+    webPreferences: {
       backgroundThrottling: false,
-      nodeIntegration:true,
-      contextIsolation: false
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true
     }
   })
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -30,7 +31,7 @@ app.on('ready', async () => {
     mainWindow.loadURL(`file://${__dirname}/main.html`)
   }
   mainWindow.removeMenu()
-  setTray ()
+  setTray()
 })
 
 app.on('activate', () => {
@@ -48,7 +49,7 @@ ipcMain.on('remindWindow:close', () => {
 ipcMain.on('setTaskTimer', (event, time, task) => {
   const now = new Date()
   const date = new Date()
-  date.setHours(time.slice(0,2), time.slice(3),0)
+  date.setHours(time.slice(0, 2), time.slice(3), 0)
   const timeout = date.getTime() - now.getTime()
   setTimeout(() => {
     createRemindWindow(task)
@@ -59,9 +60,9 @@ function setTray () {
   tray = new Tray(iconPath)
   tray.setToolTip('Tasky')
   tray.on('click', () => {
-    if(mainWindow.isVisible()){
+    if (mainWindow.isVisible()) {
       mainWindow.hide()
-    }else{
+    } else {
       mainWindow.show()
     }
   })
@@ -74,11 +75,10 @@ function setTray () {
     ])
     tray.popUpContextMenu(menuConfig)
   })
-
 }
 
 function createRemindWindow (task) {
-  if(remindWindow) remindWindow.close()
+  if (remindWindow) remindWindow.close()
   remindWindow = new BrowserWindow({
     height: 450,
     width: 360,
@@ -86,9 +86,9 @@ function createRemindWindow (task) {
     frame: false,
     icon: iconPath,
     show: false,
-    webPreferences:{
-      nodeIntegration:true,
-      contextIsolation: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
   remindWindow.removeMenu()
@@ -101,7 +101,7 @@ function createRemindWindow (task) {
     x: size.width - width,
     y: yPosition,
     height,
-    width 
+    width
   })
 
   remindWindow.setAlwaysOnTop(true)
@@ -112,16 +112,14 @@ function createRemindWindow (task) {
     createProtocol('app')
     remindWindow.loadURL(`file://${__dirname}/remind.html`)
   }
-  
+
   remindWindow.webContents.on('did-finish-load', () => {
     remindWindow.webContents.send('setTask', task)
   })
 
   remindWindow.show()
   remindWindow.on('closed', () => { remindWindow = null })
-  setTimeout( () => {
+  setTimeout(() => {
     remindWindow && remindWindow.close()
   }, 50 * 1000)
 }
-
-

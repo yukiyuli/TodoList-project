@@ -1,4 +1,4 @@
-module.exports = { //多页面打包
+module.exports = { // 多页面打包
   publicPath: './',
   pages: {
     main: {

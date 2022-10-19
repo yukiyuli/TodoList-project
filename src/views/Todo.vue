@@ -1,11 +1,11 @@
 <template>
-  <h2>今日待完成任务</h2>
+  <h2>Today's tasks</h2>
   <ul class="tasks">
     <li class="task-item" v-for="(item,index) in todoArray" :key="index">
       <span class="task-text">{{item.name}}&nbsp;&nbsp;&nbsp; {{item.time}} </span>
       <span>
-        <span class="btns enable-click" @click="finishFunc(index)">完成</span>
-        <span class="btns enable-click" @click="deleteFunc(index)">删除</span>
+        <span class="btns enable-click" @click="finishFunc(index)">Done</span>
+        <span class="btns enable-click" @click="deleteFunc(index)">Delete</span>
       </span>
     </li>
   </ul>
@@ -22,10 +22,10 @@ export default {
 
     function finishFunc (index) {
       const todos = [...todoArray.value]
-      const finisheds = [...finishedArray.value]
+      const finished = [...finishedArray.value]
 
-      finisheds.push(todos[index])
-      updateFinished(finisheds)
+      finished.push(todos[index])
+      updateFinished(finished)
 
       todos.splice(index, 1)
       updateTodo(todos)

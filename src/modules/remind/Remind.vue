@@ -1,7 +1,7 @@
 <template>
-    <span class="close enable-click" @click="closeRemind">知道了</span>
+    <span class="close enable-click" @click="closeRemind">Got it!</span>
     <div class="reminder">
-      <span>{{remindMsg}}</span>的时间到啦！
+      It's time to<br><span>{{remindMsg}}</span>
     </div>
     <div class="background"
         :style="{
@@ -9,26 +9,26 @@
           backgroundSize:'contain'}">
     </div>
   </template>
-  <script>
-  import { closeRemind, setRemindMsg } from '../../utils/useIPC.js'
-  export default {
-    setup () {
-      const remindMsg = setRemindMsg()
-      return {
-        closeRemind,
-        remindMsg,
-        bgIndex: parseInt(Math.random() * 5),
-        imgs: [
-          'background_1.jfif',
-          'background_2.png',
-          'background_3.jpg',
-          'background_4.jfif',
-          'background_5.jfif'
-        ]
-      }
+<script>
+import { closeRemind, setRemindMsg } from '../../utils/useIPC.js'
+export default {
+  setup () {
+    const remindMsg = setRemindMsg()
+    return {
+      closeRemind,
+      remindMsg,
+      bgIndex: parseInt(Math.random() * 5),
+      imgs: [
+        'background_1.jfif',
+        'background_2.png',
+        'background_3.jpg',
+        'background_4.jfif',
+        'background_5.jfif'
+      ]
     }
   }
-  </script>
+}
+</script>
   <style lang="scss">
   *{
     margin: 0;
